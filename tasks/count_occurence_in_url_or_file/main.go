@@ -55,11 +55,11 @@ type result struct {
 func Process(path string, searchString string, pathType string) result {
 	switch pathType {
 
-	// USAGE: echo -e 'https://golang.org\nhttps://golang.org\nhttps://golang.org' | go run main.go -type url
+	// USAGE: echo -e 'https://golang.org\nhttps://golang.org\nhttps://golang.org' | go run quick.go -type url
 	case "url":
 		return countOccurrenceOnPage(path, searchString)
 
-	// USAGE: echo -e '/etc/passwd\n/etc/hosts' | go run main.go - type file
+	// USAGE: echo -e '/etc/passwd\n/etc/hosts' | go run quick.go - type file
 	case "file":
 		return countOccurrenceInFile(path, searchString)
 
