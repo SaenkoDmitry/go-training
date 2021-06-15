@@ -13,6 +13,11 @@ func main() {
 		wg.Add(1)
 		go func(wg *sync.WaitGroup) {
 			atomic.AddInt64(&counter, 1)
+			/*
+			// another way to sync add operation below
+			for !atomic.CompareAndSwapInt64(&counter, counter, counter+1) {
+			}
+			*/
 			wg.Done()
 		}(&wg)
 	}
