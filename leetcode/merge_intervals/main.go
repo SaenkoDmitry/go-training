@@ -28,41 +28,12 @@ func merge(intervals [][]int) [][]int {
 	//sort.Sort(intervalsType(intervals))
 	sort.Slice(intervals, func(i, j int) bool {
 		if intervals[i][0] == intervals[j][0] {
-			return intervals[i][0] < intervals[j][0]
+			return intervals[i][1] < intervals[j][1]
 		}
 		return intervals[i][0] < intervals[j][0]
 	})
 
-	for i := 0; i < len(intervals); i++ {
-		currentLeft, currentRight := intervals[i][0], intervals[i][1]
-		for j := i + 1; j < len(intervals); j++ {
-
-			next := intervals[j]
-			if next[0] >= currentLeft && next[0] <= currentRight {
-				if next[1] > currentRight {
-					currentRight = next[1]
-				}
-				intervals = append(intervals[:j], intervals[j + 1:]...)
-				j--
-			} else {
-				break
-			}
-		}
-		result = append(result, []int{currentLeft, currentRight})
-	}
-
-	return result
-}
-
-func merge2(intervals [][]int) [][]int {
-	result := make([][]int, 0)
-
-	sort.Slice(intervals, func(i, j int) bool {
-		if intervals[i][0] == intervals[j][0] {
-			return intervals[i][0] < intervals[j][0]
-		}
-		return intervals[i][0] < intervals[j][0]
-	})
+	fmt.Println(intervals)
 
 	for i := 0; i < len(intervals); i++ {
 		currentLeft, currentRight := intervals[i][0], intervals[i][1]
@@ -86,9 +57,11 @@ func merge2(intervals [][]int) [][]int {
 }
 
 func main() {
-	intervals := [][]int{{2,6},{1,3},{8,10},{15,18}}
+	//intervals := [][]int{{2,6},{1,3},{8,10},{15,18}}
+	intervals2 := [][]int{{2,6},{2,3},{8,10},{15,18}}
 	//intervals := [][]int{{1,4},{4,5}}
 	//intervals := [][]int{{1,4},{0,4}}
 	//intervals := [][]int{{1,4},{2,3}}
-	fmt.Println(merge(intervals))
+	//fmt.Println(merge(intervals))
+	fmt.Println(merge(intervals2))
 }
