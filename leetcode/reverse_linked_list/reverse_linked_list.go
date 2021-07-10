@@ -11,10 +11,10 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func (l ListNode) String() string {
+func (head ListNode) String() string {
 	var buffer bytes.Buffer
-	buffer.WriteString(strconv.FormatInt(int64(l.Val), 10))
-	curr := l.Next
+	buffer.WriteString(strconv.FormatInt(int64(head.Val), 10))
+	curr := head.Next
 	for curr != nil {
 		buffer.WriteRune(' ')
 		buffer.WriteString(strconv.FormatInt(int64(curr.Val), 10))
@@ -23,19 +23,20 @@ func (l ListNode) String() string {
 	return buffer.String()
 }
 
-func (l *ListNode) Reverse() *ListNode {
-	curr := l
-	var futureRoot, prevRoot, temp *ListNode
+func (head *ListNode) Reverse() *ListNode {
+	var root, prevRoot, temp *ListNode
+	curr := head
+
 	for curr != nil {
 		temp = curr.Next
 
-		futureRoot = curr
-		futureRoot.Next = prevRoot
-		prevRoot = futureRoot
+		root = curr
+		root.Next = prevRoot
+		prevRoot = root
 
 		curr = temp
 	}
-	return futureRoot
+	return root
 }
 
 func ArrayToListNode(arr []int) *ListNode {
