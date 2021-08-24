@@ -8,6 +8,7 @@ import (
 	"strconv"
 )
 
+// training 1: https://ya.cc/t/ZvQwZrmuiUYc3
 
 // BinaryHeap куча с возвращением максимального элемента
 type BinaryHeap struct {
