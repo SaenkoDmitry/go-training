@@ -1,1 +1,1 @@
-## project with useful materials for developers
+## project with useful materials for go developers
