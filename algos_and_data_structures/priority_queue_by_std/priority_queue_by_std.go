@@ -1,14 +1,8 @@
 package priority_queue_by_std
 
-import "container/heap"
-
-/**
- * Definition for singly-linked list.
- * type v struct {
- *     Val int
- *     Next *ListNode
- * }
- */
+import (
+	"strconv"
+)
 
 type ListNode struct {
 	Val  int
@@ -41,11 +35,11 @@ func (pq *PriorityQueue) Pop() interface{} {
 	return item
 }
 
-// TODO : how implement priority queue in go
 
-func main() {
-	pq := make(PriorityQueue, 0)
-	heap.Init(&pq)
-
-	// ... Push(interface{]) items
+func (l ListNode) String() string {
+	currItemStr := strconv.FormatInt(int64(l.Val), 10)
+	if l.Next == nil {
+		return currItemStr
+	}
+	return currItemStr + " " + l.Next.String()
 }
