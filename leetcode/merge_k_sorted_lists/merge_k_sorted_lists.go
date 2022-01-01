@@ -10,7 +10,9 @@ func mergeKLists(lists []*pqlistnode.ListNode) *pqlistnode.ListNode {
 	pq := make(pqlistnode.PriorityQueue, 0)
 	heap.Init(&pq)
 	for i := range lists {
-		heap.Push(&pq, lists[i])
+		if lists[i] != nil {
+			heap.Push(&pq, lists[i])
+		}
 	}
 
 	var root, curr *pqlistnode.ListNode
