@@ -1,26 +1,6 @@
-package main
+package search_in_rotated_sorted_array
 
-import "fmt"
-
-func binarySearch(nums []int, target int) int {
-	left := 0
-	right := len(nums) - 1
-
-	for left <= right {
-		pivot := (left + right) / 2
-
-		if nums[pivot] > target {
-			right = pivot - 1
-		} else if nums[pivot] < target {
-			left = pivot + 1
-		} else {
-			return pivot
-		}
-	}
-	return -1
-}
-
-func search(nums []int, target int) int {
+func SearchInRotatedSortedArrayWithFullScan(nums []int, target int) int {
 
 	// normalize with complexity O(N)
 	var k int
@@ -43,8 +23,56 @@ func search(nums []int, target int) int {
 	return found
 }
 
-func main() {
-	fmt.Println(search([]int{4,5,6,7,0,1,2}, 0))
-	fmt.Println(search([]int{4,5,6,7,0,1,2}, 3))
-	fmt.Println(search([]int{3,1}, 3))
+func SearchInRotatedSortedArray(nums []int, target int) int {
+	k := findRotatedIndex(nums)
+	nums = append(nums[k:], nums[:k]...)
+	if b := binarySearch(nums, target); b == -1 {
+		return -1
+	} else {
+		return (k + b) % len(nums)
+	}
+}
+
+func findRotatedIndex(nums []int) int {
+	left := 0
+	right := len(nums) - 1
+
+	if nums[left] <= nums[right] {
+		return 0
+	}
+
+	last := 0
+	for left <= right && nums[left] > nums[right] {
+		pivot := (left + right) / 2
+		if pivot == left || pivot == right {
+			last = pivot + 1
+			break
+		}
+		if nums[pivot] > nums[left] {
+			left = pivot + 1
+			last = left
+		} else if nums[pivot] < nums[left] {
+			right = pivot - 1
+			last = pivot
+		}
+	}
+
+	return last
+}
+
+func binarySearch(nums []int, target int) int {
+	left := 0
+	right := len(nums) - 1
+
+	for left <= right {
+		pivot := (left + right) / 2
+		if nums[pivot] < target {
+			left = pivot + 1
+		} else if nums[pivot] > target {
+			right = pivot - 1
+		} else {
+			return pivot
+		}
+	}
+	return -1
 }
