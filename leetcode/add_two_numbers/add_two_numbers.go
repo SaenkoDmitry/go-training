@@ -23,60 +23,32 @@ func (l ListNode) String() string {
 	return buffer.String()
 }
 
-func AddTwoNumbers(first *ListNode, second *ListNode) *ListNode {
-
-	if first == nil {
-		return second
-	}
-	if second == nil {
-		return first
-	}
-
-	root, accum := appendToResultSumTwoNode(nil, first, second, 0)
-	last := root
-	first = first.Next
-	second = second.Next
-
-	for first != nil && second != nil {
-		last, accum = appendToResultSumTwoNode(last, first, second, accum)
-		first, second, last = first.Next, second.Next, last.Next
-	}
-	for first != nil {
-		last, accum = appendToResultOneNode(last, first, accum)
-		first, last = first.Next, last.Next
-	}
-	for second != nil {
-		last, accum = appendToResultOneNode(last, second, accum)
-		second, last = second.Next, last.Next
-	}
-	if accum != 0 {
-		last.Next = &ListNode{
-			Val: accum,
+func AddTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+	var result, curr, newElem *ListNode
+	var rest int
+	for l1 != nil || l2 != nil || rest != 0 {
+		var first, second int
+		if l1 != nil {
+			first = l1.Val
+			l1 = l1.Next
+		}
+		if l2 != nil {
+			second = l2.Val
+			l2 = l2.Next
+		}
+		newElem = &ListNode{
+			Val: (first + second + rest) % 10,
+		}
+		rest = (first + second + rest) / 10
+		if result == nil {
+			result = newElem
+			curr = newElem
+		} else {
+			curr.Next = newElem
+			curr = curr.Next
 		}
 	}
-	return root
-}
-
-func appendToResultSumTwoNode(last, firstCurr, secondCurr *ListNode, accum int) (*ListNode, int) {
-	newNode := &ListNode{Val: (firstCurr.Val + secondCurr.Val + accum) % 10, Next: nil}
-	accum = (firstCurr.Val + secondCurr.Val + accum) / 10
-	if last == nil {
-		last = newNode
-	} else {
-		last.Next = newNode
-	}
-	return last, accum
-}
-
-func appendToResultOneNode(last, curr *ListNode, accum int) (*ListNode, int) {
-	newNode := &ListNode{Val: (curr.Val + accum) % 10, Next: nil}
-	accum = (curr.Val + accum) / 10
-	if last == nil {
-		last = newNode
-	} else {
-		last.Next = newNode
-	}
-	return last, accum
+	return result
 }
 
 func ArrayToListNode(arr []int) *ListNode {
