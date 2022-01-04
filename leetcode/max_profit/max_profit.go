@@ -1,49 +1,30 @@
-package main
+package max_profit
 
 import (
-	"fmt"
+	"math"
 )
 
-func maxProfit(prices []int) int {
-	if len(prices) == 0 || len(prices) == 1 {
+func MaxProfit(prices []int) int {
+	if len(prices) == 1 {
 		return 0
 	}
-	minArr := make([]int, len(prices))
-	maxArr := make([]int, len(prices))
 
-	min := prices[0]
-	minArr[0] = min
+	maxArr := make([]float64, len(prices))
+	minArr := make([]float64, len(prices))
+
+	minArr[0] = float64(prices[0])
 	for i := 1; i < len(prices); i++ {
-		if prices[i] < min {
-			min = prices[i]
-		}
-		minArr[i] = min
+		minArr[i] = math.Min(float64(prices[i]), minArr[i-1])
 	}
 
-	max := prices[len(prices) - 1]
-	maxArr[0] = max
-	for i := len(prices) - 2; i >= 0; i-- {
-		if prices[i] > max {
-			max = prices[i]
-		}
-		maxArr[i] = max
+	maxArr[len(prices) - 1] = float64(prices[len(prices) - 1])
+	for i := len(prices) - 2; i >= 1; i-- {
+		maxArr[i] = math.Max(float64(prices[i]), maxArr[i+1])
 	}
 
-	var maxDiff, currDiff int
-	for i := 0; i < len(prices); i++ {
-		currDiff = maxArr[i] - minArr[i]
-		if currDiff > maxDiff {
-			maxDiff = currDiff
-		}
+	maxProfit := float64(0)
+	for i := 1; i < len(prices); i++ {
+		maxProfit = math.Max(maxProfit, maxArr[i] - minArr[i])
 	}
-	return maxDiff
-}
-
-func main() {
-	prices := []int{7,1,5,3,6,4}
-	fmt.Println(maxProfit(prices))
-	prices = []int{7,6,4,3,1}
-	fmt.Println(maxProfit(prices))
-	prices = []int{1,2}
-	fmt.Println(maxProfit(prices))
+	return int(maxProfit)
 }
