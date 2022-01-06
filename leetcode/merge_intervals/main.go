@@ -5,56 +5,32 @@ import (
 	"sort"
 )
 
-type intervalsType [][]int
-
-func (a intervalsType) Len() int {
-	return len([][]int(a))
-}
-
-func (a intervalsType) Swap(i, j int) {
-	a[i], a[j] = a[j], a[i]
-}
-
-func (a intervalsType) Less(i, j int) bool {
-	if a[i][0] == a[j][0] {
-		return a[i][0] < a[j][0]
-	}
-	return a[i][0] < a[j][0]
-}
-
 func merge(intervals [][]int) [][]int {
 	result := make([][]int, 0)
-
-	//sort.Sort(intervalsType(intervals))
 	sort.Slice(intervals, func(i, j int) bool {
 		if intervals[i][0] == intervals[j][0] {
 			return intervals[i][1] < intervals[j][1]
 		}
 		return intervals[i][0] < intervals[j][0]
 	})
-
-	fmt.Println(intervals)
-
-	for i := 0; i < len(intervals); i++ {
-		currentLeft, currentRight := intervals[i][0], intervals[i][1]
-		for j := i + 1; j < len(intervals); j++ {
-
-			next := intervals[j]
-			if next[0] >= currentLeft && next[0] <= currentRight {
-				if next[1] > currentRight {
-					currentRight = next[1]
+	for i := range intervals {
+		left, right := intervals[i][0], intervals[i][1]
+		found := false
+		for j := 0; j < len(result); j++ {
+			if result[j][0] <= left && left <= result[j][1] {
+				if result[j][1] < right {
+					result[j][1] = right
 				}
-				intervals = append(intervals[:j], intervals[j + 1:]...)
-				j--
-			} else {
-				break
+				found = true
 			}
 		}
-		result = append(result, []int{currentLeft, currentRight})
+		if !found {
+			result = append(result, []int{left, right})
+		}
 	}
-
 	return result
 }
+
 
 func main() {
 	//intervals := [][]int{{2,6},{1,3},{8,10},{15,18}}
