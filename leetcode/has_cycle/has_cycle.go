@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package has_cycle
 
 type ListNode struct {
 	Val  int
@@ -31,23 +29,4 @@ func hasCycle(head *ListNode) bool {
 		}
 	}
 	return false
-}
-
-func main() {
-	secondListNode := &ListNode{
-		Val: 2,
-		Next: &ListNode{
-			Val: 0,
-			Next: &ListNode{
-				Val: -4,
-				Next: nil,
-			},
-		},
-	}
-	secondListNode.Next.Next.Next = secondListNode
-	cycledlist := &ListNode{
-		Val: 3,
-		Next: secondListNode,
-	}
-	fmt.Println(hasCycle(cycledlist))
 }

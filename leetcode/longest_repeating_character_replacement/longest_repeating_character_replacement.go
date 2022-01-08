@@ -1,7 +1,6 @@
-package main
+package longest_repeating_character_replacement
 
 import (
-	"fmt"
 	"math"
 )
 
@@ -38,9 +37,4 @@ func characterReplacement(s string, k int) int {
 		right++
 	}
 	return result
-}
-
-func main() {
-	fmt.Println(characterReplacement("ABAB", 2))
-	fmt.Println(characterReplacement("AABABBA", 1))
 }
