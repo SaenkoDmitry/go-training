@@ -3,7 +3,7 @@ package main
 import (
 	"container/heap"
 	"fmt"
-	pqlistnode "github.com/SaenkoDmitry/go-training/algos_and_data_structures/priority_queue_by_std"
+	pqlistnode "github.com/SaenkoDmitry/go-training/datastructures/priorityqueue"
 )
 
 func mergeKLists(lists []*pqlistnode.ListNode) *pqlistnode.ListNode {

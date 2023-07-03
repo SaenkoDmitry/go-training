@@ -1,4 +1,4 @@
-package priority_queue_by_std
+package priorityqueue
 
 import (
 	"strconv"
@@ -34,7 +34,6 @@ func (pq *PriorityQueue) Pop() interface{} {
 	*pq = (*pq)[0 : len(*pq)-1]
 	return item
 }
-
 
 func (l ListNode) String() string {
 	currItemStr := strconv.FormatInt(int64(l.Val), 10)
