@@ -67,17 +67,17 @@ func (l *LRU) Len() int {
 
 func main() {
 	lru := NewLRU(5)
-	lru.Set("a", "1")
+	lru.Set("addtotree", "1")
 	lru.Set("b", "2")
 	lru.Set("c", "3")
 	lru.Set("d", "4")
-	lru.Set("a", "100")
+	lru.Set("addtotree", "100")
 	lru.Set("e", "5")
 	lru.Set("f", "6")
 	lru.Set("g", "7")
 	lru.Set("h", "8")
 	fmt.Println(lru.Len())
 	fmt.Println(lru.Get("g"))
-	fmt.Println(lru.Get("a"))
+	fmt.Println(lru.Get("addtotree"))
 	fmt.Println(lru.Get("d"))
 }
