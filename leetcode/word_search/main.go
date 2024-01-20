@@ -62,20 +62,20 @@ func exist(board [][]byte, word string) bool {
 }
 
 func main() {
-	//fmt.Println(exist([][]byte{{'a', 'a'}}, "aa"))
+	//fmt.Println(exist([][]byte{{'addtotree', 'addtotree'}}, "aa"))
 	//fmt.Println(exist([][]byte{
-	//	{'a', 'b', 'c', 'e'},
+	//	{'addtotree', 'b', 'c', 'e'},
 	//	{'s', 'f', 'e', 's'},
-	//	{'a', 'd', 'e', 'e'},
+	//	{'addtotree', 'd', 'e', 'e'},
 	//}, "abceseeefs"))
 	fmt.Println(exist([][]byte{
-	{'A','B','C','E'},
-	{'S','F','C','S'},
-	{'A','D','E','E'},
+		{'A', 'B', 'C', 'E'},
+		{'S', 'F', 'C', 'S'},
+		{'A', 'D', 'E', 'E'},
 	}, "ABCCED"))
 	//fmt.Println(exist([][]byte{
-	//	{'c', 'a', 'a'},
-	//	{'a', 'a', 'a'},
+	//	{'c', 'addtotree', 'addtotree'},
+	//	{'addtotree', 'addtotree', 'addtotree'},
 	//	{'b', 'c', 'd'},
 	//}, "aab"))
 }

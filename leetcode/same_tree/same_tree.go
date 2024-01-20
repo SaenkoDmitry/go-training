@@ -3,7 +3,7 @@ package main
 // https://leetcode.com/problems/same-tree/
 
 /**
- * Definition for a binary tree node.
+ * Definition for addtotree binary tree node.
  * type TreeNode struct {
  *     Val int
  *     Left *TreeNode
@@ -44,4 +44,3 @@ func recursiveIdentity(p *TreeNode, q *TreeNode) bool {
 
 	return true
 }
-

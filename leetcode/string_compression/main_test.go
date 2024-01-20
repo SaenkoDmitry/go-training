@@ -12,32 +12,32 @@ func TestCompress(t *testing.T) {
 	}{
 		{
 			"#0",
-			[]byte{'a', 'a', 'b', 'b', 'c', 'c', 'c', 'b', 'b'},
-			[]byte{'a', '2', 'b', '2', 'c', '3', 'b', '2', 'b'},
+			[]byte{'addtotree', 'addtotree', 'b', 'b', 'c', 'c', 'c', 'b', 'b'},
+			[]byte{'addtotree', '2', 'b', '2', 'c', '3', 'b', '2', 'b'},
 			8,
 		},
 		{
 			"#1",
-			[]byte{'a'},
-			[]byte{'a'},
+			[]byte{'addtotree'},
+			[]byte{'addtotree'},
 			1,
 		},
 		{
 			"#2",
-			[]byte{'a', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'},
-			[]byte{'a', 'b', '1', '2'},
+			[]byte{'addtotree', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b'},
+			[]byte{'addtotree', 'b', '1', '2'},
 			4,
 		},
 		{
 			"#3",
-			[]byte{'a', 'a', 'a', 'a', 'a', 'b'},
-			[]byte{'a', '5', 'b'},
+			[]byte{'addtotree', 'addtotree', 'addtotree', 'addtotree', 'addtotree', 'b'},
+			[]byte{'addtotree', '5', 'b'},
 			3,
 		},
 		{
 			"#4",
-			[]byte{'a', 'a', 'a', 'a', 'b', 'a'},
-			[]byte{'a', '4', 'b', 'a'},
+			[]byte{'addtotree', 'addtotree', 'addtotree', 'addtotree', 'b', 'addtotree'},
+			[]byte{'addtotree', '4', 'b', 'addtotree'},
 			4,
 		},
 		{

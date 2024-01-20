@@ -38,7 +38,7 @@ func getSortedStr(input string) string {
 }
 
 func main() {
-	fmt.Println(groupAnagrams([]string{"eat","tea","tan","ate","nat","bat"}))
+	fmt.Println(groupAnagrams([]string{"eat", "tea", "tan", "ate", "nat", "bat"}))
 	fmt.Println(groupAnagrams([]string{""}))
-	fmt.Println(groupAnagrams([]string{"a"}))
+	fmt.Println(groupAnagrams([]string{"addtotree"}))
 }
