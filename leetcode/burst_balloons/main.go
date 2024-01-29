@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"sort"
 )
 
 func maxCoins(nums []int) int {
@@ -10,10 +9,7 @@ func maxCoins(nums []int) int {
 }
 
 func createKey(s []int) string {
-	arr := make([]int, 0, len(s))
-	arr = append(arr, s...)
-	sort.Ints(arr)
-	return fmt.Sprintf("%v", arr)
+	return fmt.Sprintf("%v", s)
 }
 
 func maxCoinWithCache(nums []int, cache map[string]int) int {
@@ -58,5 +54,6 @@ func burst(nums []int, i int) (int, []int) {
 func main() {
 	//fmt.Println(maxCoins([]int{3,1,5,8}))
 	//fmt.Println(maxCoins([]int{35, 16, 83, 87, 84, 59, 48, 41, 20, 54}))
+	//fmt.Println(maxCoins([]int{7, 9, 8, 0, 7, 1, 3, 5, 5}))
 	fmt.Println(maxCoins([]int{8, 2, 6, 8, 9, 8, 1, 4, 1, 5, 3, 0, 7, 7, 0, 4, 2, 2, 5}))
 }
