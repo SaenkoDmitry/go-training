@@ -9,10 +9,9 @@ import (
 )
 
 type workerPool struct {
-	n          int
+	workersNum int
 	ctx        context.Context
 	tasks      []func() error
-	workersNum int
 }
 
 type WorkerPoolI interface {
@@ -40,8 +39,9 @@ func (w *workerPool) Wait() error {
 	close(tasksCh)
 
 	errorsCh := make(chan error, len(w.tasks))
+
 	wg := &sync.WaitGroup{}
-	for i := 0; i < w.n; i++ {
+	for i := 0; i < w.workersNum; i++ {
 		wg.Add(1)
 		go w.worker(w.ctx, tasksCh, errorsCh, wg)
 	}
