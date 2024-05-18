@@ -1,7 +1,8 @@
-package longest_ones_iii
+package main
 
-// LongestOnes идея: два указателя, двигаем сначала правую границу, затем если больше не можем двигать, то двигаем левую
-func LongestOnes(nums []int, k int) int {
+import "fmt"
+
+func longestConsecutiveOnes(nums []int, k int) int {
 	maxSeq := 0
 	for left, right := 0, 0; right < len(nums); right++ {
 		if nums[right] != 1 {
@@ -19,4 +20,8 @@ func LongestOnes(nums []int, k int) int {
 		}
 	}
 	return maxSeq
+}
+
+func main() {
+	fmt.Println(4 == longestConsecutiveOnes([]int{1, 0, 0, 1, 0, 0, 0}, 2))
 }
