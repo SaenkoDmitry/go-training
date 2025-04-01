@@ -43,7 +43,7 @@ func (s *semafore) Release() error {
 
 func NewSemafore(tickets int, timeout time.Duration) SemaforeInterface {
 	return &semafore{
-		sem: make(chan struct{}, tickets),
+		sem:     make(chan struct{}, tickets),
 		timeout: timeout,
 	}
 }
@@ -54,7 +54,7 @@ func main() {
 	tickets := 3
 
 	start := time.Now()
-	semafore := NewSemafore(tickets, 3 * time.Second)
+	semafore := NewSemafore(tickets, 3*time.Second)
 	for i := 0; i < tickets; i++ {
 		if err := semafore.Acquire(); err != nil {
 			panic(err)

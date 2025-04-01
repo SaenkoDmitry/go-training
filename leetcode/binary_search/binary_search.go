@@ -21,6 +21,6 @@ func search(nums []int, target int) int {
 }
 
 func main() {
-	fmt.Println(search([]int{-1,0,3,5,9,12}, 2))
+	fmt.Println(search([]int{-1, 0, 3, 5, 9, 12}, 2))
 	fmt.Println(search([]int{5}, 5))
 }
